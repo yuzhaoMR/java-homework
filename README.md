@@ -1,7 +1,7 @@
 # spring-homework
 Spring Boot和Spring Cloud的homework
 
-1. 使用https://start.spring.io/初始化项目，使用`Maven`/`Gradle`进行构建。
+1. 使用(Spring initializr)[https://start.spring.io/] 初始化项目，使用`Maven`/`Gradle`进行构建。
 2. 创建**REST API**，实现对*User*的*CRUD*。*User*对象需要包含以下属性：`id`, `name`, `age`, `createdAt`, `updatedAt`等。
 3. 使用`MySQL`/`PostgreSQL`进行数据持久化，使用`Flyway`/`Liquibase`进行**数据库版本控制**。
 4. 使用`Junit5`和`Mockito`编写单元测试，除配置类外测试覆盖率**100%**。使用`jacoco`进行测试覆盖率检查。
