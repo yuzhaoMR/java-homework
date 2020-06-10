@@ -14,7 +14,7 @@ Spring Boot和Spring Cloud的homework
 11. 创建一个 Eureka Server 项目并启动。
 12. 把 User API 和 Email API 作为客户端，注册到 Eureka Server上。
 13. 在 UserAPI 中添加或者修改返回用户详情的API，使其返回来自 Email API的邮箱地址。User API中，需要使用 Feign, Ribbon和Eureka Client进行负载均衡。
-14. 在User API中使用 Hystrix，在调用Email API的部分添加断路器和fallback响应。
+14. 在User API中使用 Hystrix，在调用Email API的部分添加断路器和fallback响应。访问 User API，同时手动关闭和打开 Email API，查看断路器的行为。
 15. 使用 Spring Cloud Gateway 对外暴露 User API和Email API。
 16. 使用 Spring Cloud Config 管理 User API的配置。
 
