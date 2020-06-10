@@ -11,7 +11,7 @@ Spring Boot和Spring Cloud的homework
 8. 使用`Docker`搭建*本地运行环境*, 本地Docker运行环境中使用不同`profile`。
 9. 创建第二个**REST API**（Email API），它根据 *User* 的ID，返回其邮箱地址。规则：如果`id`为 `12345`，那么邮箱地址为 `12345@rest.local`，即添加后缀即可。
 10. 将 User API 和 Email API 的多个实例注册到 Eureka Server上。
-11. 在 UserAPI 中添加或者修改返回用户详情的API，使其返回来自 Email API的地址。注意在User API中使用 Feign, Ribbon和Eureka Client进行负载均衡。
+11. 在 UserAPI 中添加或者修改返回用户详情的API，使其返回来自 Email API的邮箱地址。User API中，需要使用 Feign, Ribbon和Eureka Client进行负载均衡。
 12. 在User API中使用 Hystrix，在调用Email API的部分添加断路器和fallback响应
 13. 使用 Spring Cloud Gateway对外暴露User API和Email API。
 14. 使用 Spring Cloud Config 管理 User API的配置。
