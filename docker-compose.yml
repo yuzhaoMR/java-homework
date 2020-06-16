@@ -1,0 +1,48 @@
+version: '3'
+services:
+  db:
+    container_name: "mypostgres"
+    image: "postgres"
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: appuser
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
+    networks:
+      - backend-network
+  pgadmin4:
+    container_name: "mypgadmin4"
+    image: "dpage/pgadmin4"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@domain.com
+      PGADMIN_DEFAULT_PASSWORD: 123456
+      POSTGRES_HOST_sAUTH_METHOD: trust
+    ports:
+      - "8000:80"
+    networks:
+      - backend-network
+    depends_on:
+      - db
+
+  builder:
+    image: sprintboot-demo-builder
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+
+  webapp:
+    container_name: "webapp"
+    image: sprintboot-demo-builder
+    ports:
+      - "9090:9090"
+    depends_on:
+      - pgadmin4
+      - db
+    environment:
+      spring.\profiles.\active: docker
+networks:
+  backend-network:
