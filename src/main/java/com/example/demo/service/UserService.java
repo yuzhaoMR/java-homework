@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /** Create by jony on 2020/6/15 */
 @Service
 public class UserService {
@@ -21,11 +23,16 @@ public class UserService {
   }
 
   public void addUser(User user) {
-    userRepository.save(user);
+    User userEntity = new User();
+    userEntity.setAge(user.getAge());
+    userEntity.setName(user.getName());
+    userEntity.setCreatedAt(new Date());
+    userRepository.save(userEntity);
   }
 
   public void editUser(User user) {
-    var userEntity = userRepository.getOne(user.getId());
+    var userEntity = userRepository.findById(user.getId())
+            .orElseThrow(NullPointerException::new);
     userEntity = user;
     userRepository.save(userEntity);
   }
@@ -36,7 +43,7 @@ public class UserService {
   }
 
   public User getUserById(Long id) {
-    return userRepository.getOne(id);
+    return userRepository.findById(id).orElse(null);
   }
 
   public Page<User> getUsers(int page, int size, String sort) {

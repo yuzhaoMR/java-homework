@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /** Create by jony on 2020/6/15 */
+@Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class AuditModel implements Serializable {
@@ -18,7 +20,7 @@ public abstract class AuditModel implements Serializable {
   private Date createdAt;
 
   @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "updated_at", nullable = false)
+  @Column(name = "updated_at", nullable = true)
   @LastModifiedDate
   private Date updatedAt;
 }

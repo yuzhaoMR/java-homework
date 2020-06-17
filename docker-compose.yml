@@ -12,6 +12,7 @@ services:
       - "5432:5432"
     networks:
       - backend-network
+
   pgadmin4:
     container_name: "mypgadmin4"
     image: "dpage/pgadmin4"
@@ -26,17 +27,12 @@ services:
     depends_on:
       - db
 
-  builder:
-    image: sprintboot-demo-builder
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    depends_on:
-      - db
-
   webapp:
     container_name: "webapp"
-    image: sprintboot-demo-builder
+    image: webapp
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "9090:9090"
     depends_on:
@@ -44,5 +40,8 @@ services:
       - db
     environment:
       spring.\profiles.\active: docker
+    networks:
+      - backend-network
+
 networks:
   backend-network:
