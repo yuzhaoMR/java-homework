@@ -13,5 +13,6 @@ public class RegisterWebSecurityConfigure extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().ignoringAntMatchers("/eureka/**");
         super.configure(http);
+        
     }
 }
