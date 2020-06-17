@@ -75,5 +75,22 @@ services:
     networks:
       - backend-network
 
+  gateway:
+    container_name: "gateway"
+    image: gateway
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+    depends_on:
+      - pgadmin4
+      - db
+      - register
+    environment:
+      spring.\profiles.\active: docker
+    networks:
+      - backend-network
+
 networks:
   backend-network:
