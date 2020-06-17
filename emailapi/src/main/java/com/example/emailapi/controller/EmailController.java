@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.emailapi.controller;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 @ResponseBody
 public class EmailController {
 
-  @GetMapping("/email/{id}")
-  public String getEmail(@PathVariable("id") Long id) {
-    return id + "@rest.local";
+  @GetMapping("/email/{account}")
+  public String getEmail(@PathVariable("account") String account) {
+    return account + "@rest.local";
   }
 }

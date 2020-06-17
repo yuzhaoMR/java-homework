@@ -8,7 +8,7 @@ RUN mvn -f pom.xml clean package
 
 FROM openjdk:11.0.5-stretch AS jdk
 VOLUME /tmp
-COPY --from=build ./app/target/demo-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build ./app/target/register-0.0.1-SNAPSHOT.jar app.jar
 RUN bash -c 'touch /app.jar'
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Djava.profiles.active=docker","-jar","/app.jar"]
-EXPOSE 9092
+EXPOSE 9090

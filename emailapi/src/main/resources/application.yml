@@ -1,21 +1,18 @@
 server:
-  port: 9091
-
-flyway:
-  enabled: true
-  baseline-on-migrate: true
-  validate-on-migrate: true
-  locations: classpath:db/migration
+  port: 7001
 
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/appdb
-    username: appuser
-    password: appuser
-  jpa:
-    hibernate:
-      ddl-auto: validate
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+  application:
+    name: emailapi
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 20
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    instance-info-replication-interval-seconds: 30
+    serviceUrl:
+      defaultZone: http://admin:123456@127.0.0.1:7000/register/eureka/
+
 

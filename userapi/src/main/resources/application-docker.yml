@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 9092
 
 flyway:
   enabled: true
@@ -18,6 +18,18 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  application:
+    name: userapi
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 20
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    instance-info-replication-interval-seconds: 30
+    serviceUrl:
+      defaultZone: http://admin:123456@register:9090/register/eureka/
 
 management:
   endpoints:

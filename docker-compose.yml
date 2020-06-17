@@ -27,17 +27,49 @@ services:
     depends_on:
       - db
 
-  webapp:
-    container_name: "webapp"
-    image: webapp
+  register:
+    container_name: "register"
+    image: register
     build:
-      context: .
+      context: ./register
       dockerfile: Dockerfile
     ports:
       - "9090:9090"
     depends_on:
       - pgadmin4
       - db
+    environment:
+      spring.\profiles.\active: docker
+    networks:
+      - backend-network
+
+  emailapi:
+    container_name: "emailapi"
+    image: emailapi
+    build:
+      context: ./emailapi
+      dockerfile: Dockerfile
+    ports:
+      - "9091:9091"
+    depends_on:
+      - register
+    environment:
+      spring.\profiles.\active: docker
+    networks:
+      - backend-network
+
+  userapi:
+    container_name: "userapi"
+    image: userapi
+    build:
+      context: ./userapi
+      dockerfile: Dockerfile
+    ports:
+      - "9092:9092"
+    depends_on:
+      - pgadmin4
+      - db
+      - register
     environment:
       spring.\profiles.\active: docker
     networks:
