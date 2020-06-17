@@ -2,8 +2,8 @@ FROM maven:3.6.0-jdk-11-slim AS build
 MAINTAINER yz <yuzhaomr@gmail.com>
 
 WORKDIR /app/
-COPY src ./src
-COPY pom.xml .
+COPY ./userapi/src ./src
+COPY ./userapi/pom.xml .
 RUN mvn -f pom.xml clean package
 
 FROM openjdk:11.0.5-stretch AS jdk
