@@ -17,6 +17,9 @@ spring:
       ddl-auto: validate
     properties:
       hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
   application:
     name: userapi
@@ -43,3 +46,6 @@ management:
     shutdown:
       enabled: true
 
+feign:
+  hystrix:
+    enabled: true

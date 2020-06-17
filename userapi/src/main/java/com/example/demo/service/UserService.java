@@ -22,12 +22,14 @@ public class UserService {
     this.userRepository = userRepository;
   }
 
-  public void addUser(User user) {
+  public Long addUser(User user) {
     User userEntity = new User();
     userEntity.setAge(user.getAge());
     userEntity.setName(user.getName());
     userEntity.setCreatedAt(new Date());
     userRepository.save(userEntity);
+
+    return userEntity.getId();
   }
 
   public void editUser(User user) {

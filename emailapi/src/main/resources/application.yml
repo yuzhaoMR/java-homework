@@ -15,4 +15,18 @@ eureka:
     serviceUrl:
       defaultZone: http://admin:123456@127.0.0.1:7000/register/eureka/
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        base-path: /monitor
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+
+
+
 

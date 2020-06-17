@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.User;
+import com.example.demo.service.IEmailService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,15 +15,19 @@ import javax.websocket.server.PathParam;
 public class UserController {
 
   private UserService userService;
+  private IEmailService emailService;
 
   @Autowired
-  public UserController(UserService userService) {
+  public UserController(UserService userService,
+                        IEmailService emailService) {
     this.userService = userService;
+    this.emailService = emailService;
   }
 
   @PostMapping("/users")
-  public void addUser(@RequestBody User user) {
-    userService.addUser(user);
+  public String addUser(@RequestBody User user) {
+    Long id = userService.addUser(user);
+    return emailService.getEmail(id.toString());
   }
 
   @PutMapping("/users/{id}")
