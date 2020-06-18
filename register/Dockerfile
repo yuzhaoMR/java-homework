@@ -2,9 +2,10 @@ FROM maven:3.6.0-jdk-11-slim AS build
 MAINTAINER yz <yuzhaomr@gmail.com>
 
 WORKDIR /app/
-COPY ./src ./src
 COPY ./pom.xml .
-RUN mvn -f pom.xml clean package
+RUN mvn dependency:go-offline
+COPY ./src ./src
+RUN mvn -f pom.xml clean package -DskipTests
 
 FROM openjdk:11.0.5-stretch AS jdk
 VOLUME /tmp
