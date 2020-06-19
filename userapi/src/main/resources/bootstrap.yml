@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: docker
+
+---
+spring:
+  profiles: docker
+  application:
+    name: config-userapi-client
+  cloud:
+    config:
+      uri: http://configserver:9095
+      label: master
+      profile: docker
+
+
+---
+spring:
+  profiles: dev
+  application:
+    name: config-userapi-client
+  cloud:
+    config:
+      uri: http://localhost:9095
+      label: master
+      profile: dev

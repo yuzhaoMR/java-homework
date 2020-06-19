@@ -1,8 +1,0 @@
-server:
-    port: 7002
-datasource:
-    url: jdbc:postgresql://localhost:5432/appdb
-    username: appuser
-    password: appuser
-eureka:
-url: http://admin:123456@localhost:7000/register/eureka/

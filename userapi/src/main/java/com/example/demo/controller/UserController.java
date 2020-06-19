@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.config.GitConfig;
 import com.example.demo.entity.User;
 import com.example.demo.service.IEmailService;
 import com.example.demo.service.UserService;
@@ -16,12 +17,13 @@ public class UserController {
 
   private UserService userService;
   private IEmailService emailService;
+  private GitConfig gitConfig;
 
   @Autowired
-  public UserController(UserService userService,
-                        IEmailService emailService) {
+  public UserController(UserService userService, IEmailService emailService, GitConfig gitConfig) {
     this.userService = userService;
     this.emailService = emailService;
+    this.gitConfig = gitConfig;
   }
 
   @PostMapping("/users")
@@ -50,5 +52,10 @@ public class UserController {
   public Page<User> getUsers(
       @PathParam("page") int page, @PathParam("size") int size, @PathParam("sort") String sort) {
     return userService.getUsers(page, size, sort);
+  }
+
+  @GetMapping("/gitconfig")
+  public String getGitConfig() {
+    return gitConfig.toString();
   }
 }

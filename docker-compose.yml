@@ -26,6 +26,19 @@ services:
       - backend-network
     depends_on:
       - db
+  
+  configserver:
+    container_name: "configserver"
+    image: configserver
+    build:
+      context: ./configserver
+      dockerfile: Dockerfile
+    ports:
+      - "9095:9095"
+    environment:
+      spring.\profiles.\active: docker
+    networks:
+      - backend-network
 
   register:
     container_name: "register"
@@ -70,6 +83,7 @@ services:
       - pgadmin4
       - db
       - register
+      - configserver
     environment:
       spring.\profiles.\active: docker
     networks:
