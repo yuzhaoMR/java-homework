@@ -5,8 +5,8 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/AuJavaTraining/spring-homework/tree/YuZhao
+          uri: https://github.com/yuzhaoMR/config-server
           username: yuzhao
           password: 123456
-          default-label: YuZhao
-          search-paths: config
+          default-label: master
+          search-paths: .
