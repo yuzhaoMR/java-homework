@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: config-server  # 应用名称
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/AuJavaTraining/spring-homework/tree/YuZhao
+          username: yuzhao
+          password: 123456
+          default-label: YuZhao
+          search-paths: config
