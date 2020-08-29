@@ -1,4 +1,4 @@
-# spring-homework
+# springboot-homework
 How to run project
 
 1. git clone git@github.com:yuzhaoMR/java-spring-demo.git
